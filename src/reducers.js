@@ -7,7 +7,7 @@ const defaultState = {
 }
 
 // 底下每一個就是一個 reducer
-function posts(state = defaultState, action) {
+function postsReducer(state = defaultState, action) {
   switch (action.type) {
 
     // 回傳設定好 posts 的 state
@@ -30,7 +30,7 @@ function posts(state = defaultState, action) {
 
 // 其實有多個 reducer 才需要用這個
 const App = combineReducers({
-  posts
+  postsReducer
 })
 
 export default App
