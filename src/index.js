@@ -1,29 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router'
-import { Provider } from 'react-redux'
+import React from 'react'
+import ReactDom from 'react-dom'
+import App from './components/App'
+
 import { createStore } from 'redux'
-import AppReducer from './reducers'
-import App from './App';
-import AllPost from './AllPost';
-import NewPost from './NewPost';
+import { Provider } from 'react-redux'
 
+import rootReducer from './reducers/index'
+import { addCharacterById}  from './actions/index'
 
-import './bootstrap-3.3.7-dist/css/bootstrap.min.css';
+const store = createStore(rootReducer)
+console.log('store.getState()',store.getState())
+store.subscribe(()=> console.log('store.dispatch()',store.getState()))
+store.dispatch(addCharacterById(2))
 
-// 建立 store，把 reducer 傳進去
-let store = createStore(AppReducer);
-ReactDOM.render(
-  (
-    <Provider store={store}>
-      <Router history={hashHistory}>
-        <Route path="/" component={App}>
-          <IndexRoute component={AllPost} />
-          <Route path="posts" component={AllPost}/>
-          <Route path="new_post" component={NewPost} />
-        </Route>
-      </Router>
-    </Provider>
-  ),
-  document.getElementById('root')
-);
+ReactDom.render(
+	<Provider store = {store}>
+		<App/>
+	</Provider> 
+	, document.getElementById('root'))
