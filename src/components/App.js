@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../index.css'
 import MemeItem from './MemeItem'
+// import { fetchMemes } from '../actions/index'
 class App extends Component {
 	constructor(){
 		super()
@@ -11,6 +12,7 @@ class App extends Component {
 		}
 	}
 	render(){
+		// <div onClick={()=>this.props.fetchMemes()}><h3>Feth</h3></div>
 		return(
 			<div>
 				<h2>Welecom to the Meme Generator</h2>
@@ -32,5 +34,11 @@ class App extends Component {
 function mapStateToProps(state){
 	return state
 }
+
+// function mapDispatchToProps(dispatch){
+// 	return{
+// 		fetchMemes:()=>{dispatch(fetchMemes())}
+// 	}
+// }
 
 export default connect(mapStateToProps,null)(App)
